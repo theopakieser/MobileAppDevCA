@@ -37,7 +37,7 @@ android {
     }
 
     buildFeatures {
-        viewBinding = true  // <-- enable this for your btnAdd / EditText binding
+        viewBinding = true
     }
 }
 

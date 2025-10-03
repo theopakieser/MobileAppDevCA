@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Books</string>
+    <string name="button_addBook">Add Book</string>
+    <string name="hint_bookTitle">Book Title</string>
+
+
 </resources>
