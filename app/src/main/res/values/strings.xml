@@ -1,6 +1,3 @@
 <resources>
-    <string name="app_name">BookApp</string>
-    <string name="book_title_hint">Title</string>
-    <string name="book_author_hint">Author</string>
-    <string name="add_book_button">Add Book</string>
+    <string name="app_name">Books</string>
 </resources>
