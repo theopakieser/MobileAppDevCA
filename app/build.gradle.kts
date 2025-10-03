@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "org.wit.bookapp"   // <-- change to your new app namespace
-    compileSdk = 34                 // 36 is preview, stick to latest stable (34)
+    compileSdk = 36                // 36 is preview, stick to latest stable (34)
 
     defaultConfig {
         applicationId = "org.wit.bookapp"  // <-- update to match namespace
-        minSdk = 24                        // 30 is too restrictive unless required
-        targetSdk = 34                     // match compileSdk
+        minSdk = 26                        // 30 is too restrictive unless required
+        targetSdk = 36                     // match compileSdk
         versionCode = 1
         versionName = "1.0"
 
@@ -47,6 +47,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.timber)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
