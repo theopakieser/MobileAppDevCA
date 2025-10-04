@@ -25,12 +25,13 @@ class BookAppActivity : AppCompatActivity() {
 
         binding.btnAdd.setOnClickListener() {
             book.title = binding.bookTitle.text.toString()
-            if (book.title.isNotEmpty()) {
-                i("add Button Pressed: $book.title")
+            book.author = binding.bookAuthor.text.toString()
+            if (book.title.isNotEmpty() || book.author.isNotEmpty()) {
+                i("add Button Pressed: ${book.title} by ${book.author}")
             }
             else {
                 Snackbar
-                    .make(it,"Please Enter a title", Snackbar.LENGTH_LONG)
+                    .make(it,"Please Enter a title and author", Snackbar.LENGTH_LONG)
                     .show()
             }
         }
