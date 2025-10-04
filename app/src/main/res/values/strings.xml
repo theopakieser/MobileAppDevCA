@@ -4,6 +4,7 @@
     <string name="hint_bookTitle">Book Title</string>
     <string name="hint_bookAuthor">Author</string>
     <string name="hint_bookGenre">Genre</string>
+    <string name="hint_bookPages">Number of Pages</string>
 
 
 
