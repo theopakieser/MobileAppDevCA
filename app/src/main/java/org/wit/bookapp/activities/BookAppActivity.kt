@@ -11,7 +11,7 @@ import timber.log.Timber.i
 class BookAppActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBookappBinding
-    var book = BookModel()
+    val books = ArrayList<BookModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,12 +24,15 @@ class BookAppActivity : AppCompatActivity() {
         i("Book App started...")
 
         binding.btnAdd.setOnClickListener() {
-            book.title = binding.bookTitle.text.toString()
-            book.author = binding.bookAuthor.text.toString()
-            book.genre = binding.bookGenre.text.toString()
-            book.pages = binding.bookPages.text.toString().toIntOrNull() ?: 0
+            val book = BookModel( title = binding.bookTitle.text.toString(),
+                author = binding.bookAuthor.text.toString(),
+                genre = binding.bookGenre.text.toString(),
+                pages = binding.bookPages.text.toString().toIntOrNull() ?: 0
+            )
             if (book.title.isNotEmpty() && book.author.isNotEmpty() && book.genre.isNotEmpty() && book.pages > 0) {
-                i("add Button Pressed: ${book.title} by ${book.author}. \n This is a ${book.genre} book, it is ${book.pages} pages long")
+                books.add(book)
+                i("Book Added: ${book.title} by ${book.author}. \n This is a ${book.genre} book, it is ${book.pages} pages long")
+                i("Total Books: ${books.size}")
             }
             else {
                 Snackbar
