@@ -13,19 +13,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BookApp"
         tools:targetApi="34">
-        <activity android:name=".activities.BookListActivity"
+
+        <!-- Launcher activity -->
+        <activity
+            android:name=".activities.BookListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
 
-            <meta-data android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity android:name=".activities.BookAppActivity">
-            <meta-data android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+        <!-- Secondary activity (Add Book screen) -->
+        <activity
+            android:name=".activities.BookAppActivity"
+            android:exported="false" />
     </application>
 </manifest>

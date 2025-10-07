@@ -5,6 +5,7 @@ import org.wit.bookapp.models.BookModel
 import timber.log.Timber
 import timber.log.Timber.i
 
+
 class MainApp : Application() {
     val books = ArrayList<BookModel>()
 
@@ -13,7 +14,8 @@ class MainApp : Application() {
         Timber.plant(Timber.DebugTree())
         i("Book App started")
         books.add(BookModel("One", "Author", "Genre", 1))
-        books.add(BookModel("Two", "author", "genre", 2))
-        books.add(BookModel("three", "author", "genre", 3))
+        books.add(BookModel("Two", "Author", "Genre", 2))
+        books.add(BookModel("Three", "Author", "Genre", 3))
+
     }
 }

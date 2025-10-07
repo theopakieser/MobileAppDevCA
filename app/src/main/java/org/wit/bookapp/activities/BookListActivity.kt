@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import org.wit.bookapp.databinding.ActivityBookappBinding
+import org.wit.bookapp.databinding.ActivityBookListBinding
 import org.wit.bookapp.databinding.CardBookBinding
 import org.wit.bookapp.main.MainApp
 import org.wit.bookapp.models.BookModel
@@ -14,11 +14,11 @@ import org.wit.bookapp.models.BookModel
 class BookListActivity : AppCompatActivity() {
 
     lateinit var app: MainApp
-    private lateinit var binding: ActivityBookappBinding
+    private lateinit var binding: ActivityBookListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityBookappBinding.inflate(layoutInflater)
+        binding = ActivityBookListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         app = application as MainApp
@@ -40,8 +40,8 @@ class BookAdapter constructor(private var books: List<BookModel>) :
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
-        val book = books[holder.adapterPosition]
-        holder.bind(book)
+        val placemark = books[holder.adapterPosition]
+        holder.bind(placemark)
     }
 
     override fun getItemCount(): Int = books.size
@@ -49,11 +49,11 @@ class BookAdapter constructor(private var books: List<BookModel>) :
     class MainHolder(private val binding : CardBookBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(book: BookModel) {
-            binding.bookTitle.text = book.title
-            binding.bookAuthor.text = book.author
+        fun bind(book : BookModel) {
+           binding.bookTitle.text = book.title
+            binding.bookAuthor.text = book.title
             binding.bookGenre.text = book.genre
-
+            binding.bookPages.text = book.pages.toString()
         }
     }
 }

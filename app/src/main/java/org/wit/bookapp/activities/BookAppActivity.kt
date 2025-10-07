@@ -19,7 +19,7 @@ class BookAppActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         app = application as MainApp
-        i("Book App started...")
+        i("Book App Activity started...")
         binding.btnAdd.setOnClickListener() {
             book.title = binding.bookTitle.text.toString()
             book.author = binding.bookAuthor.text.toString()
@@ -28,8 +28,9 @@ class BookAppActivity : AppCompatActivity() {
             if (book.title.isNotEmpty() && book.author.isNotEmpty()) {
                 app.books.add(book.copy())
                 i("add Button Pressed: ${book}")
-                for (i in app.books.indices)
-                { i("Book[$i]:${this.app.books[i]}") }
+                for (i in app.books.indices) {
+                    i("Placemark[$i]:${app.books[i]}")
+                }
             }
             else {
                 Snackbar.make(it,"Please Enter a title", Snackbar.LENGTH_LONG)
@@ -38,4 +39,5 @@ class BookAppActivity : AppCompatActivity() {
         }
     }
 }
+
 
