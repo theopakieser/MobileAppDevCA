@@ -25,12 +25,15 @@ class BookAppActivity : AppCompatActivity() {
             book.author = binding.bookAuthor.text.toString()
             book.genre = binding.bookGenre.text.toString()
             book.pages = binding.bookPages.text.toString().toIntOrNull() ?: 0
+
             if (book.title.isNotEmpty() && book.author.isNotEmpty()) {
                 app.books.add(book.copy())
                 i("add Button Pressed: ${book}")
                 for (i in app.books.indices) {
-                    i("Placemark[$i]:${app.books[i]}")
+                    i("book [$i]:${this.app.books[i]}")
                 }
+                setResult(RESULT_OK)
+                finish()
             }
             else {
                 Snackbar.make(it,"Please Enter a title", Snackbar.LENGTH_LONG)

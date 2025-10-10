@@ -13,9 +13,9 @@ class MainApp : Application() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
         i("Book App started")
-        books.add(BookModel("One", "Author", "Genre", 1))
-        books.add(BookModel("Two", "Author", "Genre", 2))
-        books.add(BookModel("Three", "Author", "Genre", 3))
+       // books.add(BookModel("One", "Author", "Genre", 1))
+      //  books.add(BookModel("Two", "Author", "Genre", 2))
+      //  books.add(BookModel("Three", "Author", "Genre", 3))
 
     }
 }
