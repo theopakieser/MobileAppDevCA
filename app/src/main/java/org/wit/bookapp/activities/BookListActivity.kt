@@ -21,18 +21,16 @@ class BookListActivity : AppCompatActivity() {
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityBookListBinding
+    private lateinit var adapter: BookAdapter
 
-    // Launcher for Add Book screen (handles result)
     private val getResult =
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == RESULT_OK && it.data != null) {
-                val newBook = it.data!!.getSerializableExtra("book_added") as BookModel
-                app.books.add(newBook)
-                binding.recyclerView.adapter =
-                    BookAdapter(app.books.toMutableList()) // refresh list
-                Snackbar.make(binding.root, "Added: ${newBook.title}", Snackbar.LENGTH_SHORT).show()
+                adapter = BookAdapter(app.books.findAll().toMutableList())
+                binding.recyclerView.adapter = adapter
+                Snackbar.make(binding.root, "Book Added!", Snackbar.LENGTH_SHORT).show()
             }
         }
 
@@ -46,17 +44,24 @@ class BookListActivity : AppCompatActivity() {
 
         app = application as MainApp
 
-        // RecyclerView setup
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = BookAdapter(app.books.toMutableList())
+        adapter = BookAdapter(app.books.findAll().toMutableList())
+        binding.recyclerView.adapter = adapter
 
-        // FAB to launch Add Book screen
         binding.fab.setOnClickListener {
             val launcherIntent = Intent(this, BookAppActivity::class.java)
             getResult.launch(launcherIntent)
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        // Reload data from JSON store whenever returning to this screen
+        adapter = BookAdapter(app.books.findAll().toMutableList())
+        binding.recyclerView.adapter = adapter
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
@@ -75,6 +80,7 @@ class BookListActivity : AppCompatActivity() {
 }
 
 
+
 class BookAdapter constructor(private var books: MutableList<BookModel>)
     : RecyclerView.Adapter<BookAdapter.MainHolder>() {
 
@@ -87,9 +93,11 @@ class BookAdapter constructor(private var books: MutableList<BookModel>)
         val book = books[holder.adapterPosition]
         holder.bind(book)
 
-        //long press to delete
         holder.itemView.setOnLongClickListener {
+            val context = holder.itemView.context.applicationContext as MainApp
             val removedBook = books[holder.adapterPosition]
+
+            context.books.delete(removedBook)
             books.removeAt(holder.adapterPosition)
             notifyItemRemoved(holder.adapterPosition)
 

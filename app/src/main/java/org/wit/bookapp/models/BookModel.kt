@@ -1,6 +1,7 @@
 package org.wit.bookapp.models
 
 data class BookModel(
+    var id: Long = 0,
     var title: String = "",
     var author: String = "",
     var genre: String = "",
