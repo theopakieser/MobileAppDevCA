@@ -3,9 +3,11 @@ package org.wit.bookapp.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.wit.bookapp.R
 import org.wit.bookapp.databinding.ActivityBookListBinding
 import org.wit.bookapp.databinding.CardBookBinding
 import org.wit.bookapp.main.MainApp
@@ -21,13 +23,22 @@ class BookListActivity : AppCompatActivity() {
         binding = ActivityBookListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.toolbar.title = title
+        setSupportActionBar(binding.toolbar)
+
         app = application as MainApp
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = BookAdapter(app.books)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
 }
+
 
 class BookAdapter constructor(private var books: List<BookModel>) :
     RecyclerView.Adapter<BookAdapter.MainHolder>() {
