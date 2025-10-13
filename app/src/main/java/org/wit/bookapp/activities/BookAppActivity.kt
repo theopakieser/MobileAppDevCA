@@ -3,12 +3,16 @@ package org.wit.bookapp.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.widget.Toolbar
 import com.google.android.material.snackbar.Snackbar
 import org.wit.bookapp.R
 import org.wit.bookapp.databinding.ActivityBookappBinding
 import org.wit.bookapp.main.MainApp
 import org.wit.bookapp.models.BookModel
 import timber.log.Timber.i
+
 
 class BookAppActivity : AppCompatActivity() {
 
@@ -21,6 +25,9 @@ class BookAppActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBookappBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.toolbar.title = getString(R.string.app_name)
+        setSupportActionBar(binding.toolbar)
+
 
         app = application as MainApp
         i("Book App Activity started...")
@@ -34,6 +41,9 @@ class BookAppActivity : AppCompatActivity() {
             binding.bookPages.setText(book.pages.toString())
             binding.btnAdd.text = getString(R.string.button_save)
         }
+
+
+
 
 
         binding.btnAdd.setOnClickListener {
@@ -59,6 +69,21 @@ class BookAppActivity : AppCompatActivity() {
                 ).show()
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_book, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_cancel -> {
+                setResult(RESULT_CANCELED)
+                finish()  //close add/edit screen
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }

@@ -58,15 +58,6 @@ class BookListActivity : AppCompatActivity(), BookListener {
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.item_add -> {
-                val launcherIntent = Intent(this, BookAppActivity::class.java)
-                getResult.launch(launcherIntent)
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
 
     override fun onBookClick(book: BookModel) {
         val launcherIntent = Intent(this, BookAppActivity::class.java)
