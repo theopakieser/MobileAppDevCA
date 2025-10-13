@@ -32,8 +32,9 @@ class BookAppActivity : AppCompatActivity() {
             binding.bookAuthor.setText(book.author)
             binding.bookGenre.setText(book.genre)
             binding.bookPages.setText(book.pages.toString())
-            binding.btnAdd.text = "Save Book"
+            binding.btnAdd.text = getString(R.string.button_save)
         }
+
 
         binding.btnAdd.setOnClickListener {
             book.title = binding.bookTitle.text.toString()
