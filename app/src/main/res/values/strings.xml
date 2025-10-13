@@ -1,12 +1,16 @@
 <resources>
-    <string name="app_name">Books</string>
-    <string name="button_addBook">Add Book</string>
-    <string name="hint_bookTitle">Book Title</string>
-    <string name="hint_bookAuthor">Author</string>
-    <string name="hint_bookGenre">Genre</string>
-    <string name="hint_bookPages">Number of Pages</string>
-    <string name="menu_addBook">Add</string>
+    <string name="app_name">BookApp</string>
+    <string name="hint_bookTitle">Enter book title</string>
+    <string name="hint_bookAuthor">Enter author name</string>
+    <string name="hint_bookGenre">Enter genre</string>
+    <string name="hint_bookPages">Enter number of pages</string>
 
+    <!-- buttons -->
+    <string name="button_add">Add Book</string>
+    <string name="button_save">Save Book</string>
 
-
+    <!-- validation msgs -->
+    <string name="error_enter_title_author">Please enter Title and Author</string>
+    <string name="book_added">Book added successfully!</string>
+    <string name="book_saved">Book updated successfully!</string>
 </resources>

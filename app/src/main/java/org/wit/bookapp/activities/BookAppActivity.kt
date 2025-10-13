@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
+import org.wit.bookapp.R
 import org.wit.bookapp.databinding.ActivityBookappBinding
 import org.wit.bookapp.main.MainApp
 import org.wit.bookapp.models.BookModel
@@ -24,7 +25,6 @@ class BookAppActivity : AppCompatActivity() {
         app = application as MainApp
         i("Book App Activity started...")
 
-        // ✅ Check if editing existing book
         if (intent.hasExtra("book_edit")) {
             edit = true
             book = intent.getParcelableExtra("book_edit")!!
@@ -44,15 +44,20 @@ class BookAppActivity : AppCompatActivity() {
             if (book.title.isNotEmpty() && book.author.isNotEmpty()) {
                 if (edit) {
                     app.books.update(book)
+                    Snackbar.make(it, getString(R.string.book_saved), Snackbar.LENGTH_SHORT).show()
+
                 } else {
                     app.books.create(book)
+                    Snackbar.make(it, getString(R.string.book_added), Snackbar.LENGTH_SHORT).show()
+
                 }
 
                 val resultIntent = Intent()
                 setResult(RESULT_OK, resultIntent)
                 finish()
             } else {
-                Snackbar.make(it, "Please enter Title and Author", Snackbar.LENGTH_LONG).show()
+                // load text from strings.xml
+                Snackbar.make(it, getString(R.string.error_enter_title_author), Snackbar.LENGTH_LONG).show()
             }
         }
     }

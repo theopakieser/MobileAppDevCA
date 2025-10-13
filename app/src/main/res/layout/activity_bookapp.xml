@@ -106,7 +106,7 @@
                     android:background="@color/colorAccent"
                     android:padding="8dp"
                     android:stateListAnimator="@null"
-                    android:text="@string/button_addBook"
+                    android:text="@string/button_add"
                     android:textColor="@color/colorPrimary"
                     android:textSize="20sp" />
             </LinearLayout>
