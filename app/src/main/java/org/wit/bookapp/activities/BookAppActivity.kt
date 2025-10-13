@@ -44,22 +44,23 @@ class BookAppActivity : AppCompatActivity() {
 
             if (book.title.isNotEmpty() && book.author.isNotEmpty()) {
                 if (edit) {
-                    app.books.update(book)
-                    Snackbar.make(it, getString(R.string.book_saved), Snackbar.LENGTH_SHORT).show()
-
+                    app.books.update(book)  //update existing
                 } else {
-                    app.books.create(book)
-                    Snackbar.make(it, getString(R.string.book_added), Snackbar.LENGTH_SHORT).show()
-
+                    app.books.create(book)  //create new
                 }
-
-                val resultIntent = Intent()
-                setResult(RESULT_OK, resultIntent)
+                setResult(RESULT_OK)
                 finish()
             } else {
-                // load text from strings.xml
-                Snackbar.make(it, getString(R.string.error_enter_title_author), Snackbar.LENGTH_LONG).show()
+                //load from strings.xml
+                Snackbar.make(
+                    it,
+                    getString(R.string.error_enter_title_author),
+                    Snackbar.LENGTH_LONG
+                ).show()
             }
         }
     }
+
 }
+
+
