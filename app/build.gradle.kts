@@ -1,16 +1,17 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-parcelize")
 }
 
 android {
-    namespace = "org.wit.bookapp"   // <-- change to your new app namespace
-    compileSdk = 36                // 36 is preview, stick to latest stable (34)
+    namespace = "org.wit.bookapp"
+    compileSdk = 36
 
     defaultConfig {
-        applicationId = "org.wit.bookapp"  // <-- update to match namespace
-        minSdk = 26                        // 30 is too restrictive unless required
-        targetSdk = 36                     // match compileSdk
+        applicationId = "org.wit.bookapp"
+        minSdk = 26
+        targetSdk = 36                    
         versionCode = 1
         versionName = "1.0"
 

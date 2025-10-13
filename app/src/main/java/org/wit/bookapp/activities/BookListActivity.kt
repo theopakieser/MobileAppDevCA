@@ -3,21 +3,19 @@ package org.wit.bookapp.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import org.wit.bookapp.R
+import org.wit.bookapp.adapters.BookAdapter
+import org.wit.bookapp.adapters.BookListener
 import org.wit.bookapp.databinding.ActivityBookListBinding
-import org.wit.bookapp.databinding.CardBookBinding
 import org.wit.bookapp.main.MainApp
 import org.wit.bookapp.models.BookModel
 
-class BookListActivity : AppCompatActivity() {
+class BookListActivity : AppCompatActivity(), BookListener {
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityBookListBinding
@@ -27,10 +25,10 @@ class BookListActivity : AppCompatActivity() {
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
-            if (it.resultCode == RESULT_OK && it.data != null) {
-                adapter = BookAdapter(app.books.findAll().toMutableList())
+            if (it.resultCode == RESULT_OK) {
+                adapter = BookAdapter(app.books.findAll().toMutableList(), this)
                 binding.recyclerView.adapter = adapter
-                Snackbar.make(binding.root, "Book Added!", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(binding.root, "Book Saved!", Snackbar.LENGTH_SHORT).show()
             }
         }
 
@@ -46,7 +44,7 @@ class BookListActivity : AppCompatActivity() {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        adapter = BookAdapter(app.books.findAll().toMutableList())
+        adapter = BookAdapter(app.books.findAll().toMutableList(), this)
         binding.recyclerView.adapter = adapter
 
         binding.fab.setOnClickListener {
@@ -54,14 +52,6 @@ class BookListActivity : AppCompatActivity() {
             getResult.launch(launcherIntent)
         }
     }
-
-    override fun onResume() {
-        super.onResume()
-        // Reload data from JSON store whenever returning to this screen
-        adapter = BookAdapter(app.books.findAll().toMutableList())
-        binding.recyclerView.adapter = adapter
-    }
-
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
@@ -77,45 +67,13 @@ class BookListActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-}
 
-
-
-class BookAdapter constructor(private var books: MutableList<BookModel>)
-    : RecyclerView.Adapter<BookAdapter.MainHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-        val binding = CardBookBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MainHolder(binding)
-    }
-
-    override fun onBindViewHolder(holder: MainHolder, position: Int) {
-        val book = books[holder.adapterPosition]
-        holder.bind(book)
-
-        holder.itemView.setOnLongClickListener {
-            val context = holder.itemView.context.applicationContext as MainApp
-            val removedBook = books[holder.adapterPosition]
-
-            context.books.delete(removedBook)
-            books.removeAt(holder.adapterPosition)
-            notifyItemRemoved(holder.adapterPosition)
-
-            Snackbar.make(holder.itemView, "Deleted: ${removedBook.title}", Snackbar.LENGTH_SHORT).show()
-            true
-        }
-    }
-
-    override fun getItemCount(): Int = books.size
-
-    class MainHolder(private val binding: CardBookBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(book: BookModel) {
-            binding.bookTitle.text = book.title
-            binding.bookAuthor.text = book.author
-            binding.bookGenre.text = book.genre
-            binding.bookPages.text = book.pages.toString()
-        }
+    override fun onBookClick(book: BookModel) {
+        val launcherIntent = Intent(this, BookAppActivity::class.java)
+        launcherIntent.putExtra("book_edit", book)
+        getResult.launch(launcherIntent)
     }
 }
+
+
+
