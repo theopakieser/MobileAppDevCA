@@ -13,4 +13,12 @@
     <string name="error_enter_title_author">Please enter Title and Author</string>
     <string name="book_added">Book added successfully!</string>
     <string name="book_saved">Book updated successfully!</string>
+
+    <!-- menus -->
+    <string name="menu_add">Add</string>
+    <string name="menu_cancel">Cancel</string>
+
+
+
+
 </resources>

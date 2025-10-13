@@ -1,46 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="8dp"
     app:cardCornerRadius="12dp"
-    app:cardElevation="4dp">
+    app:cardElevation="4dp"
+    app:strokeColor="@color/colorAccent"
+    app:strokeWidth="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="12dp">
 
         <TextView
             android:id="@+id/bookTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Book Title"
+            android:textStyle="bold"
+            android:textColor="?attr/colorPrimary"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            tools:text="Book Title" />
 
         <TextView
             android:id="@+id/bookAuthor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Author"
-            android:textSize="16sp" />
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            tools:text="Author" />
 
         <TextView
             android:id="@+id/bookGenre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Genre"
-            android:textSize="16sp" />
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            tools:text="Genre" />
 
         <TextView
             android:id="@+id/bookPages"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pages"
-            android:textSize="16sp" />
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            tools:text="Pages: 300" />
 
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
