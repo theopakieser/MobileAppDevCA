@@ -13,6 +13,10 @@ import org.wit.bookapp.main.MainApp
 import org.wit.bookapp.models.BookModel
 import timber.log.Timber.i
 
+/**
+ * BookAppActivity handles adding and editing individual books.
+ * Includes form validation and save/cancel options.
+ */
 
 class BookAppActivity : AppCompatActivity() {
 

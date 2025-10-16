@@ -30,6 +30,19 @@
         android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:listitem="@layout/card_book"/>
+    <TextView
+        android:id="@+id/emptyStateText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/empty_state_message"
+        android:textAlignment="center"
+        android:textAppearance="?attr/textAppearanceBodyLarge"
+        android:textColor="@android:color/darker_gray"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:padding="24dp"
+        android:gravity="center"
+        tools:visibility="visible" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -43,3 +56,5 @@
         app:layout_anchorGravity="bottom|end"
         android:layout_gravity="bottom|end" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
