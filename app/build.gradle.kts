@@ -50,7 +50,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.timber)
 
-    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.google.code.gson:gson:2.13.2")
 
 
 

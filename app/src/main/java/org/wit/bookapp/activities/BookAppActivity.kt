@@ -1,11 +1,10 @@
 package org.wit.bookapp.activities
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
+import com.github.ajalt.timberkt.Timber.i
 import com.google.android.material.snackbar.Snackbar
 import org.wit.bookapp.R
 import org.wit.bookapp.databinding.ActivityBookappBinding
