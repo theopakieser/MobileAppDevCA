@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".activities.BookAppActivity">
+    tools:context=".activities.BookActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="24dp">
+
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,45 +24,69 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
                 app:title="@string/app_name"
-                app:titleTextColor="@android:color/white" />
+                app:titleTextColor="@android:color/white"/>
         </com.google.android.material.appbar.AppBarLayout>
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hint_bookTitle">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/bookTitle"
-                android:inputType="textCapWords" android:layout_height="match_parent" android:layout_width="match_parent"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textCapWords"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hint_bookAuthor">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/bookAuthor"
-                android:inputType="textCapWords" android:layout_height="match_parent" android:layout_width="match_parent"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textCapWords"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_bookGenre">
+            android:hint="@string/hint_bookNotes">
+
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/bookGenre"
-                android:inputType="textCapWords" android:layout_height="match_parent" android:layout_width="match_parent"/>
+                android:id="@+id/bookNotes"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:gravity="top"
+                android:inputType="textMultiLine"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_rating"
+            android:textSize="16sp"
+            android:layout_marginTop="12dp"/>
+
+        <RatingBar
+            android:id="@+id/bookRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="1"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/btnChooseImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_bookPages">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/bookPages"
-                android:inputType="number" android:layout_height="match_parent" android:layout_width="match_parent"/>
-        </com.google.android.material.textfield.TextInputLayout>
+            android:text="@string/button_choose_image"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:textColor="@android:color/white"/>
 
         <Button
             android:id="@+id/btnAdd"
@@ -73,5 +98,6 @@
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:padding="12dp"/>
+
     </LinearLayout>
 </ScrollView>

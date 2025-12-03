@@ -1,26 +1,21 @@
 <resources>
     <string name="app_name">BookApp</string>
+
     <string name="hint_bookTitle">Enter book title</string>
     <string name="hint_bookAuthor">Enter author name</string>
-    <string name="hint_bookGenre">Enter genre</string>
-    <string name="hint_bookPages">Enter number of pages</string>
+    <string name="hint_bookNotes">Write notes or a short description</string>
 
-    <!-- buttons -->
+    <string name="label_rating">Rating</string>
+
     <string name="button_add">Add Book</string>
     <string name="button_save">Save Book</string>
+    <string name="button_choose_image">Choose Cover Image</string>
 
-    <!-- validation msgs -->
     <string name="error_enter_title_author">Please enter Title and Author</string>
     <string name="book_added">Book added successfully!</string>
     <string name="book_saved">Book updated successfully!</string>
     <string name="empty_state_message">No books yet — tap + to add one.</string>
 
-
-    <!-- menus -->
     <string name="menu_add">Add</string>
     <string name="menu_cancel">Cancel</string>
-
-
-
-
 </resources>

@@ -14,6 +14,7 @@ import org.wit.bookapp.adapters.BookListener
 import org.wit.bookapp.databinding.ActivityBookListBinding
 import org.wit.bookapp.main.MainApp
 import org.wit.bookapp.models.BookModel
+import kotlin.jvm.java
 
 /**
  * BookListActivity displays all saved books.
@@ -27,7 +28,17 @@ class BookListActivity : AppCompatActivity(), BookListener {
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityBookListBinding
-    private lateinit var adapter: BookAdapter
+
+    private val editBookLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == RESULT_OK) {
+                val updatedBook = it.data?.getParcelableExtra<BookModel>("book_update")
+                if (updatedBook != null) {
+                    app.books.update(updatedBook)
+                    loadBooks()
+                }
+            }
+        }
 
     private val getResult =
         registerForActivityResult(
@@ -88,9 +99,9 @@ class BookListActivity : AppCompatActivity(), BookListener {
 
 
     override fun onBookClick(book: BookModel) {
-        val launcherIntent = Intent(this, BookAppActivity::class.java)
+        val launcherIntent = Intent(this, BookActivity::class.java)
         launcherIntent.putExtra("book_edit", book)
-        getResult.launch(launcherIntent)
+        editBookLauncher.launch(launcherIntent)
     }
 
 
