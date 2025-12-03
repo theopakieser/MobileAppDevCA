@@ -1,11 +1,12 @@
 package org.wit.bookapp.adapters
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import org.wit.bookapp.R
 import org.wit.bookapp.databinding.CardBookBinding
 import org.wit.bookapp.models.BookModel
-
 
 class BookAdapter(
     private var books: List<BookModel>,
@@ -34,10 +35,13 @@ class BookAdapter(
         fun bind(book: BookModel, listener: BookListener) {
             binding.bookTitle.text = book.title
             binding.bookAuthor.text = book.author
+            binding.bookNotes.text = book.notes
             binding.bookRating.rating = book.rating.toFloat()
 
             if (book.image.isNotEmpty()) {
-                binding.bookCover.setImageURI(android.net.Uri.parse(book.image))
+                binding.bookCover.setImageURI(Uri.parse(book.image))
+            } else {
+                binding.bookCover.setImageResource(R.drawable.ic_book_placeholder)
             }
 
             binding.root.setOnClickListener { listener.onBookClick(book) }
