@@ -1,17 +1,24 @@
 package org.wit.bookapp.activities
 
+import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import org.wit.bookapp.R
 import org.wit.bookapp.databinding.ActivityBookappBinding
+import org.wit.bookapp.helpers.showImagePicker
 import org.wit.bookapp.models.BookModel
 
 class BookActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBookappBinding
+    private lateinit var imageIntentLauncher: ActivityResultLauncher<Intent>
     private var book = BookModel()
     private var edit = false
 
@@ -19,6 +26,11 @@ class BookActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBookappBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        registerImagePickerCallback()
 
         if (intent.hasExtra("book_edit")) {
             edit = true
@@ -29,19 +41,67 @@ class BookActivity : AppCompatActivity() {
             binding.bookNotes.setText(book.notes)
             binding.bookRating.rating = book.rating.toFloat()
 
-            binding.btnAdd.text = "Save Book"
+            if (book.image.isNotEmpty()) {
+                binding.bookCover.setImageURI(Uri.parse(book.image))
+            }
+
+            binding.btnAdd.text = getString(R.string.button_save)
+        }
+
+        binding.btnChooseImage.setOnClickListener {
+            showImagePicker(imageIntentLauncher, this)
         }
 
         binding.btnAdd.setOnClickListener {
-            book.title = binding.bookTitle.text.toString()
-            book.author = binding.bookAuthor.text.toString()
+            val title = binding.bookTitle.text.toString()
+            val author = binding.bookAuthor.text.toString()
+
+            if (title.isEmpty() || author.isEmpty()) {
+                Snackbar.make(binding.root, R.string.error_enter_title_author, Snackbar.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            book.title = title
+            book.author = author
             book.notes = binding.bookNotes.text.toString()
             book.rating = binding.bookRating.rating.toInt()
 
-            val resultIntent = Intent()
-            resultIntent.putExtra("book_update", book)
-            setResult(RESULT_OK, resultIntent)
+            val data = Intent()
+            data.putExtra("book_update", book)
+            setResult(RESULT_OK, data)
+            finish()
         }
     }
 
+    private fun registerImagePickerCallback() {
+        imageIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK && result.data != null) {
+                    val uri = result.data!!.data!!
+                    contentResolver.takePersistableUriPermission(
+                        uri,
+                        Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    )
+                    book.image = uri.toString()
+                    binding.bookCover.setImageURI(uri)
+                }
+            }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_book, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> { finish(); true }
+            R.id.item_cancel -> {
+                setResult(RESULT_CANCELED)
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 }

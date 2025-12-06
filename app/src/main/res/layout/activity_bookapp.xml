@@ -79,6 +79,15 @@
             android:stepSize="1"
             android:layout_marginBottom="16dp"/>
 
+        <ImageView
+            android:id="@+id/bookCover"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_book_placeholder"/>
+
+
         <Button
             android:id="@+id/btnChooseImage"
             android:layout_width="match_parent"
