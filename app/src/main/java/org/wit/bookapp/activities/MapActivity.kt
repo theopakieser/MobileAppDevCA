@@ -1,8 +1,11 @@
 package org.wit.bookapp.activities
 
 import android.content.Intent
+import android.location.Geocoder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -33,6 +36,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerD
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
+        val searchField = findViewById<EditText>(R.id.searchText)
+        val searchButton = findViewById<Button>(R.id.btnSearch)
+
         val pos = LatLng(location.lat, location.lng)
 
         val marker = map.addMarker(
@@ -41,7 +47,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerD
                 .draggable(true)
                 .title("Book Location")
         )
-
+        searchButton.setOnClickListener {
+            val query = searchField.text.toString()
+            if (query.isNotEmpty()){
+                geoLocate(query)
+            }
+        }
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(pos, location.zoom))
         map.setOnMarkerDragListener(this)
     }
@@ -62,5 +73,27 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerD
         finish()
 
         super.onBackPressed()
+    }
+
+    private fun geoLocate(query: String){
+        try{
+            val geocoder = Geocoder(this)
+            val results = geocoder.getFromLocationName(query, 1)
+
+            if (!results.isNullOrEmpty()){
+                val location = results[0]
+                val latLng = LatLng(location.latitude, location.longitude)
+
+                map.clear()
+
+                map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
+
+                map.addMarker(
+                    MarkerOptions().position(latLng).title(query)
+                )
+            }
+        } catch (e : Exception){
+            e.printStackTrace()
+        }
     }
 }
