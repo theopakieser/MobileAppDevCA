@@ -15,14 +15,25 @@ import org.wit.bookapp.databinding.ActivityBookappBinding
 import org.wit.bookapp.helpers.showImagePicker
 import org.wit.bookapp.models.BookModel
 import com.squareup.picasso.Picasso
+import org.wit.bookapp.models.Location
 
 
 class BookActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityBookappBinding
     private lateinit var imageIntentLauncher: ActivityResultLauncher<Intent>
     private var book = BookModel()
     private var edit = false
+
+    private val mapIntentLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK && result.data != null) {
+                val newLocation = result.data!!.getParcelableExtra<Location>("location")
+                if (newLocation != null) {
+                    book.location = newLocation
+                }
+            }
+        }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,6 +87,14 @@ class BookActivity : AppCompatActivity() {
             setResult(RESULT_OK, data)
             finish()
         }
+
+        binding.btnSetLocation.setOnClickListener {
+            val launcherIntent = Intent(this, MapActivity::class.java)
+                .putExtra("location", book.location)
+
+            mapIntentLauncher.launch(launcherIntent)
+        }
+
     }
 
     private fun registerImagePickerCallback() {

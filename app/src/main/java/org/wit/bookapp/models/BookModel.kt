@@ -10,5 +10,14 @@ data class BookModel(
     var author: String = "",
     var notes: String = "",
     var rating: Int = 0,
-    var image: String = ""
+    var image: String = "",
+    var location : Location = Location()
 ) : Parcelable
+
+@Parcelize
+data class Location(
+    var lat: Double = 53.3498,
+    var lng: Double = -6.2603,
+    var zoom: Float = 12f
+) : Parcelable
+

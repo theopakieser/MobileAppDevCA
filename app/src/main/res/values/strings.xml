@@ -11,6 +11,7 @@
     <string name="button_save">Save Book</string>
     <string name="button_choose_image">Choose Cover Image</string>
     <string name="button_add_image">Add Image</string>
+    <string name="button_location">Set Location</string>
 
 
     <string name="error_enter_title_author">Please enter Title and Author</string>
@@ -20,4 +21,5 @@
 
     <string name="menu_add">Add</string>
     <string name="menu_cancel">Cancel</string>
+    <string name="title_activity_map">MapActivity</string>
 </resources>

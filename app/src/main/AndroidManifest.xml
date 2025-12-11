@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name="org.wit.bookapp.main.MainApp"
+        android:name=".main.MainApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,19 +14,28 @@
         android:theme="@style/Theme.BookApp"
         tools:targetApi="34">
 
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDF6SZxdwJTuESsXFLuwU-mOHxW1ZN0SMg" />
+
+        <activity
+            android:name=".activities.MapActivity"
+            android:exported="false"
+            android:label="@string/title_activity_map" />
         <!-- Launcher activity -->
         <activity
             android:name=".activities.BookListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Secondary activity (Add Book screen) -->
+        </activity> <!-- Secondary activity (Add Book screen) -->
         <activity
             android:name=".activities.BookActivity"
             android:exported="false" />
     </application>
+
 </manifest>
