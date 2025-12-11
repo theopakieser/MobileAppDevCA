@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.timber)
 
     implementation("com.google.code.gson:gson:2.13.2")
+    implementation("com.squareup.picasso:picasso:2.8")
 
 
 

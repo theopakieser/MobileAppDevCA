@@ -14,6 +14,8 @@ import org.wit.bookapp.R
 import org.wit.bookapp.databinding.ActivityBookappBinding
 import org.wit.bookapp.helpers.showImagePicker
 import org.wit.bookapp.models.BookModel
+import com.squareup.picasso.Picasso
+
 
 class BookActivity : AppCompatActivity() {
 
@@ -42,8 +44,11 @@ class BookActivity : AppCompatActivity() {
             binding.bookRating.rating = book.rating.toFloat()
 
             if (book.image.isNotEmpty()) {
-                binding.bookCover.setImageURI(Uri.parse(book.image))
+                Picasso.get()
+                    .load(book.image)
+                    .into(binding.bookCover)
             }
+
 
             binding.btnAdd.text = getString(R.string.button_save)
         }
@@ -83,10 +88,11 @@ class BookActivity : AppCompatActivity() {
                         Intent.FLAG_GRANT_READ_URI_PERMISSION
                     )
                     book.image = uri.toString()
-                    binding.bookCover.setImageURI(uri)
+                    Picasso.get().load(uri).into(binding.bookCover)
                 }
             }
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_book, menu)
