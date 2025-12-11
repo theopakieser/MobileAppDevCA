@@ -26,9 +26,8 @@ class BookJSONStore(private val context: Context) : BookStore, Serializable {
 
     override fun findAll(): List<BookModel> = books
 
-    override fun findById(id: Long): BookModel? {
-        TODO("Not yet implemented")
-    }
+    override fun findById(id: Long): BookModel? = books.find { it.id == id }
+
 
     override fun create(book: BookModel) {
         book.id = generateRandomId()
@@ -43,6 +42,8 @@ class BookJSONStore(private val context: Context) : BookStore, Serializable {
             foundBook.author = book.author
             foundBook.notes = book.notes
             foundBook.rating = book.rating
+            foundBook.image = book.image
+            foundBook.location = book.location
             serialize()
         }
     }
