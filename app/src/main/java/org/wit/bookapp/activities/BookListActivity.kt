@@ -48,9 +48,14 @@ class BookListActivity : AppCompatActivity(), BookListener {
     private val addBookLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
-                loadBooks()
+                val newBook = result.data?.getParcelableExtra<BookModel>("book_update")
+                if (newBook != null) {
+                    app.books.create(newBook)
+                    loadBooks()
+                }
             }
         }
+
 
     override fun onBookClick(book: BookModel) {
         val intent = Intent(this, BookActivity::class.java)

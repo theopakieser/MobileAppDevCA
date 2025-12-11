@@ -26,7 +26,7 @@
 
         <!-- Secondary activity (Add Book screen) -->
         <activity
-            android:name=".activities.BookAppActivity"
+            android:name=".activities.BookActivity"
             android:exported="false" />
     </application>
 </manifest>

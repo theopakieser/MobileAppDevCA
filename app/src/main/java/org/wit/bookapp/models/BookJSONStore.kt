@@ -26,6 +26,10 @@ class BookJSONStore(private val context: Context) : BookStore, Serializable {
 
     override fun findAll(): List<BookModel> = books
 
+    override fun findById(id: Long): BookModel? {
+        TODO("Not yet implemented")
+    }
+
     override fun create(book: BookModel) {
         book.id = generateRandomId()
         books.add(book)
@@ -37,8 +41,8 @@ class BookJSONStore(private val context: Context) : BookStore, Serializable {
         if (foundBook != null) {
             foundBook.title = book.title
             foundBook.author = book.author
-            foundBook.genre = book.genre
-            foundBook.pages = book.pages
+            foundBook.notes = book.notes
+            foundBook.rating = book.rating
             serialize()
         }
     }
@@ -53,7 +57,7 @@ class BookJSONStore(private val context: Context) : BookStore, Serializable {
         File(context.filesDir, JSON_FILE).writeText(jsonString)
     }
 
-    // ✅ safer version that won’t crash on bad JSON or missing file
+    // safer version that won’t crash on bad JSON or missing file
     private fun deserialize() {
         val file = File(context.filesDir, JSON_FILE)
         if (file.exists()) {
@@ -62,11 +66,11 @@ class BookJSONStore(private val context: Context) : BookStore, Serializable {
                 books = Gson().fromJson(jsonString, listType)
                 println("✅ Loaded ${books.size} books from JSON")
             } else {
-                println("⚠️ books.json is empty — starting with empty list")
+                println("books.json is empty — starting with empty list")
                 books = mutableListOf()
             }
         } else {
-            println("⚠️ No books.json found — creating new one on first save")
+            println("No books.json found — creating new one on first save")
         }
     }
 }
