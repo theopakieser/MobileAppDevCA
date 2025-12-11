@@ -2,7 +2,6 @@ package org.wit.bookapp.activities
 
 import android.app.Activity
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -45,9 +44,9 @@ class BookActivity : AppCompatActivity() {
 
         registerImagePickerCallback()
 
-        if (intent.hasExtra("book_edit")) {
+        if (intent.hasExtra("book")) {
             edit = true
-            book = intent.getParcelableExtra("book_edit")!!
+            book = intent.getParcelableExtra("book")!!
 
             binding.bookTitle.setText(book.title)
             binding.bookAuthor.setText(book.author)
@@ -83,7 +82,7 @@ class BookActivity : AppCompatActivity() {
             book.rating = binding.bookRating.rating.toInt()
 
             val data = Intent()
-            data.putExtra("book_update", book)
+            data.putExtra("book", book)
             setResult(RESULT_OK, data)
             finish()
         }

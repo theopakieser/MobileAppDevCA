@@ -20,7 +20,7 @@ class BookListActivity : AppCompatActivity(), BookListener {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
                 val updatedBook =
-                    result.data?.getParcelableExtra<BookModel>("book_update")
+                    result.data?.getParcelableExtra<BookModel>("book")
                 if (updatedBook != null) {
                     app.books.update(updatedBook)
                     loadBooks()
@@ -48,7 +48,7 @@ class BookListActivity : AppCompatActivity(), BookListener {
     private val addBookLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
-                val newBook = result.data?.getParcelableExtra<BookModel>("book_update")
+                val newBook = result.data?.getParcelableExtra<BookModel>("book")
                 if (newBook != null) {
                     app.books.create(newBook)
                     loadBooks()
@@ -59,7 +59,7 @@ class BookListActivity : AppCompatActivity(), BookListener {
 
     override fun onBookClick(book: BookModel) {
         val intent = Intent(this, BookActivity::class.java)
-        intent.putExtra("book_edit", book)
+        intent.putExtra("book", book)
         editBookLauncher.launch(intent)
     }
 
