@@ -68,9 +68,16 @@
                 android:isIndicator="true"
                 android:layout_marginTop="4dp"
                 tools:rating="0" />
-
         </LinearLayout>
 
+
+        <ImageButton
+            android:id="@+id/btnDelete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_menu_delete"
+            android:contentDescription="Delete Book" />
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>

@@ -4,6 +4,7 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import org.wit.bookapp.R
 import org.wit.bookapp.databinding.CardBookBinding
 import org.wit.bookapp.models.BookModel
@@ -14,16 +15,12 @@ class BookAdapter(
 ) : RecyclerView.Adapter<BookAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-        val binding = CardBookBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
+        val binding = CardBookBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MainHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
-        val book = books[holder.adapterPosition]
+        val book = books[position]
         holder.bind(book, listener)
     }
 
@@ -39,12 +36,12 @@ class BookAdapter(
             binding.bookRating.rating = book.rating.toFloat()
 
             if (book.image.isNotEmpty()) {
-                binding.bookCover.setImageURI(Uri.parse(book.image))
-            } else {
-                binding.bookCover.setImageResource(R.drawable.ic_book_placeholder)
+                Picasso.get().load(book.image).into(binding.bookCover)
             }
-
             binding.root.setOnClickListener { listener.onBookClick(book) }
+
+            binding.btnDelete.setOnClickListener { listener.onBookDelete(book) }
+
         }
     }
 }

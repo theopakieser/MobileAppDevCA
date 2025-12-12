@@ -3,6 +3,7 @@ package org.wit.bookapp.activities
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.wit.bookapp.adapters.BookAdapter
@@ -73,4 +74,18 @@ class BookListActivity : AppCompatActivity(), BookListener {
         binding.recyclerView.adapter = BookAdapter(app.books.findAll(), this)
         binding.recyclerView.adapter?.notifyDataSetChanged()
     }
+
+    override fun onBookDelete(book: BookModel) {
+        // Show simple confirmation dialog
+        AlertDialog.Builder(this)
+            .setTitle("Delete Book")
+            .setMessage("Are you sure you want to delete '${book.title}'?")
+            .setPositiveButton("Delete") { _, _ ->
+                app.books.delete(book)
+                loadBooks()
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
 }
