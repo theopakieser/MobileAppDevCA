@@ -43,7 +43,6 @@ class BookJSONStore(private val context: Context) : BookStore, Serializable {
             foundBook.notes = book.notes
             foundBook.rating = book.rating
             foundBook.image = book.image
-            foundBook.location = book.location
             serialize()
         }
     }

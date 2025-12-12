@@ -43,6 +43,12 @@ class BookListActivity : AppCompatActivity(), BookListener {
             val intent = Intent(this, BookActivity::class.java)
             addBookLauncher.launch(intent)
         }
+
+        binding.btnFindBookstores.setOnClickListener {
+            val intent = Intent(this, MapActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private val addBookLauncher =

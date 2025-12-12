@@ -55,6 +55,15 @@
         app:backgroundTint="?attr/colorPrimary"
         app:layout_anchorGravity="bottom|end"
         android:layout_gravity="bottom|end" />
+
+    <Button
+        android:id="@+id/btnFindBookstores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Find Bookstores"
+        android:layout_margin="16dp"
+        android:layout_gravity="bottom|start" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
