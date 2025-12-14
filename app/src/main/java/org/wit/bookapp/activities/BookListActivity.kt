@@ -12,11 +12,17 @@ import org.wit.bookapp.adapters.BookListener
 import org.wit.bookapp.databinding.ActivityBookListBinding
 import org.wit.bookapp.main.MainApp
 import org.wit.bookapp.models.BookModel
+import androidx.appcompat.app.AppCompatDelegate
+
 
 class BookListActivity : AppCompatActivity(), BookListener {
 
     private lateinit var binding: ActivityBookListBinding
     private lateinit var app: MainApp
+
+    private val prefs by lazy {
+        getSharedPreferences("settings", MODE_PRIVATE)
+    }
 
     private val editBookLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -36,6 +42,34 @@ class BookListActivity : AppCompatActivity(), BookListener {
         binding = ActivityBookListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val nightSwitch = binding.switchNightMode
+
+        // Load saved preference
+        val isNight = prefs.getBoolean("night_mode", false)
+        nightSwitch.isChecked = isNight
+
+        AppCompatDelegate.setDefaultNightMode(
+            if (isNight)
+                AppCompatDelegate.MODE_NIGHT_YES
+            else
+                AppCompatDelegate.MODE_NIGHT_NO
+        )
+
+        // Toggle listener
+        nightSwitch.setOnCheckedChangeListener { _, isChecked ->
+            prefs.edit()
+                .putBoolean("night_mode", isChecked)
+                .apply()
+
+            AppCompatDelegate.setDefaultNightMode(
+                if (isChecked)
+                    AppCompatDelegate.MODE_NIGHT_YES
+                else
+                    AppCompatDelegate.MODE_NIGHT_NO
+            )
+        }
+
+
         app = application as MainApp
 
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
@@ -51,7 +85,6 @@ class BookListActivity : AppCompatActivity(), BookListener {
             val intent = Intent(this, MapActivity::class.java)
             startActivity(intent)
         }
-
     }
 
     private val addBookLauncher =
