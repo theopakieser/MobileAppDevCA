@@ -53,7 +53,6 @@ dependencies {
 
     implementation("com.google.code.gson:gson:2.13.2")
     implementation("com.squareup.picasso:picasso:2.8")
-    implementation(libs.play.services.maps)
     implementation("com.google.android.gms:play-services-maps:18.1.0")
 
     implementation("androidx.core:core-splashscreen:1.0.1")
