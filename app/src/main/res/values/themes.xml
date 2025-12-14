@@ -1,19 +1,19 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
 
-    <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
-
+    <!-- Normal app theme -->
     <style name="Theme.BookApp" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorAccent</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorOnPrimary">@color/white</item>
     </style>
 
+    <!-- Splash theme  -->
+    <style name="Theme.BookApp.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_book</item>
+        <item name="windowSplashScreenAnimationDuration">350</item>
 
-
-    <style name="Theme.BookApp.Splash" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="android:windowBackground">@color/splash_background</item>
+        <item name="postSplashScreenTheme">@style/Theme.BookApp</item>
     </style>
 
 </resources>

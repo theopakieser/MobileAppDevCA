@@ -11,31 +11,31 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BookApp.Splash"
-        tools:targetApi="34">
+        android:theme="@style/Theme.BookApp.Splash">
 
+        <!-- Launcher activity uses Splash -->
+        <activity
+            android:name=".activities.BookListActivity"
+            android:exported="true"
+            android:theme="@style/Theme.BookApp.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDF6SZxdwJTuESsXFLuwU-mOHxW1ZN0SMg" />
+        <!-- NORMAL theme -->
+        <activity
+            android:name=".activities.BookActivity"
+            android:exported="false"
+            android:theme="@style/Theme.BookApp" />
 
         <activity
             android:name=".activities.MapActivity"
             android:exported="false"
-            android:label="@string/title_activity_map" />
-        <!-- Launcher activity -->
-        <activity
-            android:name=".activities.BookListActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/Theme.BookApp" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity> <!-- Secondary activity (Add Book screen) -->
-        <activity
-            android:name=".activities.BookActivity"
-            android:exported="false" />
     </application>
+
 
 </manifest>

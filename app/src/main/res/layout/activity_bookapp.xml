@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".activities.BookActivity">
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +15,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/colorAccent"
             android:title="@string/app_name"
             android:titleTextColor="@android:color/white" />
 
@@ -63,8 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:numStars="5"
-            android:stepSize="1"
-            android:layout_marginBottom="16dp" />
+            android:stepSize="1" />
 
         <!-- Book Cover -->
         <ImageView
@@ -73,8 +70,7 @@
             android:layout_height="200dp"
             android:layout_marginTop="16dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_book_placeholder"
-            tools:ignore="ContentDescription" />
+            android:src="@drawable/ic_book_placeholder" />
 
         <!-- Choose Image -->
         <Button
@@ -82,9 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="@string/button_choose_image"
-            android:backgroundTint="?attr/colorPrimary"
-            android:textColor="@android:color/white" />
+            android:text="@string/button_choose_image" />
 
         <!-- Add / Save -->
         <Button
@@ -93,8 +87,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/button_add"
-            android:backgroundTint="?attr/colorPrimary"
-            android:textColor="@android:color/white"
             android:textStyle="bold"
             android:padding="12dp" />
 
