@@ -14,26 +14,23 @@
         android:theme="@style/Theme.BookApp.Splash">
 
         <!-- Launcher activity uses Splash -->
+
         <activity
             android:name=".activities.BookListActivity"
-            android:exported="true"
-            android:theme="@style/Theme.BookApp.Splash">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!-- NORMAL theme -->
         <activity
             android:name=".activities.BookActivity"
-            android:exported="false"
-            android:theme="@style/Theme.BookApp" />
+            android:exported="false" />
 
         <activity
             android:name=".activities.MapActivity"
-            android:exported="false"
-            android:theme="@style/Theme.BookApp" />
+            android:exported="false" />
 
     </application>
 
