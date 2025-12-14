@@ -5,10 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
 import org.wit.bookapp.R
 import org.wit.bookapp.databinding.ActivityBookappBinding
 import org.wit.bookapp.helpers.showImagePicker
@@ -34,7 +34,10 @@ class BookActivity : AppCompatActivity() {
 
         if (intent.hasExtra("book")) {
             edit = true
-            book = intent.getParcelableExtra("book")!!
+            intent.getParcelableExtra<BookModel>("book")?.let {
+                edit = true
+                book = it
+            }
 
             binding.bookTitle.setText(book.title)
             binding.bookAuthor.setText(book.author)
@@ -60,7 +63,12 @@ class BookActivity : AppCompatActivity() {
             val author = binding.bookAuthor.text.toString()
 
             if (title.isEmpty() || author.isEmpty()) {
-                Snackbar.make(binding.root, R.string.error_enter_title_author, Snackbar.LENGTH_LONG).show()
+                Toast.makeText(
+                    this,
+                    R.string.error_enter_title_author,
+                    Toast.LENGTH_LONG
+                ).show()
+
                 return@setOnClickListener
             }
 

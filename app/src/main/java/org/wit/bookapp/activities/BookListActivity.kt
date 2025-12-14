@@ -11,7 +11,6 @@ import org.wit.bookapp.adapters.BookListener
 import org.wit.bookapp.databinding.ActivityBookListBinding
 import org.wit.bookapp.main.MainApp
 import org.wit.bookapp.models.BookModel
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 
 class BookListActivity : AppCompatActivity(), BookListener {
 
@@ -31,7 +30,6 @@ class BookListActivity : AppCompatActivity(), BookListener {
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
         super.onCreate(savedInstanceState)
         binding = ActivityBookListBinding.inflate(layoutInflater)
         setContentView(binding.root)

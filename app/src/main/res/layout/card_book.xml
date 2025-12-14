@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,9 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardCornerRadius="12dp"
-    app:cardElevation="4dp"
-    app:strokeColor="@color/colorAccent"
-    app:strokeWidth="1dp">
+    app:cardElevation="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,67 +15,79 @@
         android:orientation="horizontal"
         android:padding="12dp">
 
+        <!-- Book Cover -->
         <ImageView
             android:id="@+id/bookCover"
             android:layout_width="80dp"
             android:layout_height="110dp"
+            android:layout_marginEnd="12dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_book_placeholder"
-            android:layout_marginEnd="12dp"
             tools:ignore="ContentDescription" />
 
-        <LinearLayout
+        <!-- Content + Delete -->
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/bookTitle"
-                android:layout_width="wrap_content"
+            <!-- Delete button -->
+            <ImageButton
+                android:id="@+id/btnDelete"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentEnd="true"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_delete"
+                android:contentDescription="Delete Book" />
+
+            <!-- Book info -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="?attr/colorPrimary"
-                android:textSize="18sp"
-                tools:text="Book Title" />
+                android:layout_below="@id/btnDelete"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/bookAuthor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                tools:text="Author" />
+                <TextView
+                    android:id="@+id/bookTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textColor="?attr/colorPrimary"
+                    tools:text="Book Title" />
 
-            <TextView
-                android:id="@+id/bookNotes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxLines="2"
-                android:ellipsize="end"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                tools:text="Description" />
+                <TextView
+                    android:id="@+id/bookAuthor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    tools:text="Author" />
 
-            <RatingBar
-                android:id="@+id/bookRating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:numStars="5"
-                android:stepSize="1"
-                android:isIndicator="true"
-                android:layout_marginTop="4dp"
-                tools:rating="0" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/bookNotes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textSize="13sp"
+                    android:textColor="@color/black"
+                    tools:text="Description" />
 
+                <RatingBar
+                    android:id="@+id/bookRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:stepSize="1"
+                    android:isIndicator="true"
+                    android:layout_marginTop="4dp"
+                    tools:rating="3" />
+            </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/btnDelete"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@android:color/transparent"
-            android:src="@android:drawable/ic_menu_delete"
-            android:contentDescription="Delete Book" />
+        </RelativeLayout>
+
     </LinearLayout>
 
-</com.google.android.material.card.MaterialCardView>
+</androidx.cardview.widget.CardView>
