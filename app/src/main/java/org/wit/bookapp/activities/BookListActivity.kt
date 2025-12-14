@@ -70,6 +70,7 @@ class BookListActivity : AppCompatActivity(), BookListener {
         }
 
 
+
         app = application as MainApp
 
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
