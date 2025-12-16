@@ -13,6 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BookApp.Splash">
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDF6SZxdwJTuESsXFLuwU-mOHxW1ZN0SMg" />
+
         <!-- Launcher activity uses Splash -->
         <activity
             android:name=".activities.BookListActivity"
